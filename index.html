@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Rechnung öffnen</title>
+    <style>
+        body {
+            font-size: 22px;
+            background-color: #f9f9f9;
+        }
+        input, button {
+            font-size: 1.4em;
+            padding: 12px;
+            margin: 5px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        input {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="inputFeld" placeholder="Rechnungsnummer eingeben">
+    <button onclick="seiteOeffnen()">Öffnen</button>
+
+    <script>
+        function seiteOeffnen() {
+            var input = document.getElementById('inputFeld').value;
+            var url = 'https://itt.dvs.ag/#/db/rechnungen/' + encodeURIComponent(input);
+            window.open(url, '_blank');
+        }
+    </script>
+
+    <br>
+
+    <input type="text" id="kundeInput" placeholder="Kunde eingeben">
+    <input type="text" id="debitorenIdInput" placeholder="DebitorenID eingeben">
+    <button onclick="debitorOeffnen()">Debitor öffnen</button>
+
+    <script>
+        function debitorOeffnen() {
+            var kunde = document.getElementById('kundeInput').value;
+            var debitor = document.getElementById('debitorenIdInput').value;
+            var url = 'https://itt.dvs.ag/#/db/debitor/' + encodeURIComponent(kunde) + '*' + encodeURIComponent(debitor);
+            window.open(url, '_blank');
+        }
+    </script>
+
+    <br>
+
+    <input type="text" id="kundeSuchenInput" placeholder="Kunde ID eingeben">
+    <button onclick="kundeSuchen()">Kunde suchen</button>
+
+    <script>
+        function kundeSuchen() {
+            var kundeId = document.getElementById('kundeSuchenInput').value;
+            var url = 'https://itt.dvs.ag/#/db/kunde/' + encodeURIComponent(kundeId);
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
